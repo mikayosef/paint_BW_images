@@ -1,7 +1,7 @@
-from torch.utils.data import Dataset, DataLoader, dataloader
+from torch.utils.data import Dataset
 import torchvision
 import torchvision.transforms as transforms
-import torch
+
 
 
 class BWDataset(Dataset):
@@ -21,6 +21,4 @@ class BWDataset(Dataset):
         gray_transform = torchvision.transforms.Grayscale(
             num_output_channels=1)
         gray = gray_transform(img)
-        # gray = gray / 255
-        # img = img / 255
         return gray.to(self.device), img.to(self.device)
