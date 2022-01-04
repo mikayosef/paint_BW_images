@@ -4,7 +4,7 @@ from tqdm import tqdm
 
 
 def train(epochs, trainloader, valloader, optimizer, criterion, NET, PATH):
-
+    device = next(NET.parameters()).device
     train_set_loss = []
     val_set_loss = []
     number_of_epochs = []
@@ -14,15 +14,14 @@ def train(epochs, trainloader, valloader, optimizer, criterion, NET, PATH):
         running_loss = 0.0
         for idx, data in enumerate(trainloader):
             gray, color = data
+            gray, color = gray.to(device), color.to(device)
             optimizer.zero_grad()
             outputs = NET(gray)
             loss = criterion(outputs, color)
             loss.backward()
             optimizer.step()
             running_loss += loss.item()
-            # if idx % 5000 == 4999:
-            #     print("Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}".format(epoch, idx * len(data),
-            #             len(trainloader), 100.0 * idx / len(trainloader), loss.item()))
+
 
         train_set_loss.append(running_loss / len(trainloader))
         number_of_epochs.append(epoch)
@@ -38,11 +37,14 @@ def train(epochs, trainloader, valloader, optimizer, criterion, NET, PATH):
 
 
 def val(valloader, criterion, NET):
+    device = next(NET.parameters()).device
+
     NET.eval()
     val_loss = 0
     with torch.no_grad():
         for idx, data in enumerate(valloader):
             gray, color = data
+            gray, color = gray.to(device), color.to(device)
 
             outputs = NET(gray)
             loss = criterion(outputs, color)

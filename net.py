@@ -29,14 +29,7 @@ class CONVNet(nn.Module):
         self.conv11 = nn.Conv2d(5, 3, kernel_size=3,
                                 padding=1, padding_mode='reflect')
 
-        # self.conv = []
-        # input_dim = 3
-        # output_dim = 15
-        # for i in range(10):
-        #     self.conv.append(nn.Sequential(nn.Conv2d(input_dim, output_dim, kernel_size=3, padding=1), nn.ReLU()))
-        #     input_dim = output_dim
-        #     output_dim = int(output_dim*1.1)
-        # self.conv = nn.Sequential(*self.conv)
+
 
     def forward(self, x):
         x = F.relu(self.conv1(x))
@@ -72,6 +65,6 @@ class FULLNet(nn.Module):
         x = torch.flatten(x, 1)
         x = F.relu(self.fc1(x))
 
-        batch_size, vector_dim = x.shape
+        batch_size, _ = x.shape
         x = torch.reshape(x, (batch_size, 3, 32, 32))
         return x

@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 def test_paint(pic_name, device, NET):
     with torch.no_grad():
-        pic_path = r"C:\Users\mikay\Documents\Study\paint_BW_images/" + pic_name + ".jpg"
+        pic_path = pic_name 
         with Image.open(pic_path) as im:
             pic_transform = transforms.ToTensor()
             pic = pic_transform(im)
@@ -35,10 +35,7 @@ def test_paint(pic_name, device, NET):
             torch.cuda.empty_cache()
 
 
-# pic_name = "mountain"
-# pic_path = r"C:\Users\mikay\Documents\Study\paint_BW_images/" +pic_name + ".jpg"
 
-# test_paint(pic_path, f"{pic_name}_pred",device, NET)
 
 
 def save(img, pic_name):

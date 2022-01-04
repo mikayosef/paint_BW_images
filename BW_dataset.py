@@ -3,7 +3,6 @@ import torchvision
 import torchvision.transforms as transforms
 
 
-
 class BWDataset(Dataset):
     def __init__(self, train, download, device):
         self.data = torchvision.datasets.CIFAR10(
@@ -21,4 +20,4 @@ class BWDataset(Dataset):
         gray_transform = torchvision.transforms.Grayscale(
             num_output_channels=1)
         gray = gray_transform(img)
-        return gray.to(self.device), img.to(self.device)
+        return gray, img
