@@ -1,7 +1,7 @@
 # paint_BW_images
 by: Mika Yosef
 
-<img src="mountain.jpg" width=400/> <img src="mountain_pred.jpg" width=400/>
+<img src="images\mountain.jpg" width=400/> <img src="images\mountain.jpg_pred.jpg" width=400/>
 
 Make your black&white pictue a colorful one.
 
