@@ -47,7 +47,7 @@ class CONVNet(nn.Module):
         return x
 
 
-# small network with convolution and FC:
+
 
 class FULLNet(nn.Module):
 
