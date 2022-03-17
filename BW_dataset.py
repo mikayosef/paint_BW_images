@@ -17,8 +17,7 @@ class BWDataset(Dataset):
         img, label = self.data[idx]
         img_transform = transforms.Compose([transforms.ToTensor()])
         img = img_transform(img)
-        gray_transform = torchvision.transforms.Grayscale(
-            num_output_channels=1)
+        gray_transform = torchvision.transforms.Grayscale(num_output_channels=1)
         gray = gray_transform(img)
         return gray, img
 
